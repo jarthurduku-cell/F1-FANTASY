@@ -1,0 +1,115 @@
+﻿<Window x:Class="F1Fantasy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="F1 Fantasy" Height="860" Width="1130"
+        MinHeight="720" MinWidth="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="#0A0A0A">
+
+    <Window.Resources>
+        <Style x:Key="NavBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#888898"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="18,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" Background="Transparent"
+                                BorderThickness="0,0,0,3" BorderBrush="Transparent"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#111113"/>
+                                <Setter Property="Foreground" Value="#F0EEEA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NavBtnActive" TargetType="Button" BasedOn="{StaticResource NavBtn}">
+            <Setter Property="Foreground" Value="#F0EEEA"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent"
+                                BorderThickness="0,0,0,3" BorderBrush="#E8002D"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- NAVBAR -->
+        <Grid Grid.Row="0" Background="#0E0E0E">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Brand -->
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="20,0,24,0">
+                <TextBlock Text="F1 FANTASY" FontFamily="Segoe UI Black" FontSize="15"
+                           Foreground="#E8002D" FontWeight="Black"/>
+                <TextBlock x:Name="txtSubtitle" Text="LEAGUE DASHBOARD"
+                           FontFamily="Segoe UI" FontSize="8"
+                           Foreground="#E8002D" Opacity="0.7"/>
+            </StackPanel>
+
+            <!-- Nav buttons -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Stretch">
+                <Button x:Name="btnHome"      Content="Home"      Style="{StaticResource NavBtn}"       Click="Nav_Click" Tag="Home"/>
+                <Button x:Name="btnStandings" Content="Standings" Style="{StaticResource NavBtn}"       Click="Nav_Click" Tag="Standings"/>
+                <Button x:Name="btnMyTeam"    Content="My Team"   Style="{StaticResource NavBtnActive}" Click="Nav_Click" Tag="MyTeam"/>
+                <Button x:Name="btnMySquad"   Content="My Squad"  Style="{StaticResource NavBtn}"       Click="Nav_Click" Tag="MySquad"/>
+                <Button x:Name="btnTransfers" Content="Transfers" Style="{StaticResource NavBtn}"       Click="Nav_Click" Tag="Transfers"/>
+                <Button x:Name="btnWeekly"    Content="Weekly"    Style="{StaticResource NavBtn}"       Click="Nav_Click" Tag="Weekly"/>
+                <Button x:Name="btnSeason"    Content="Season"    Style="{StaticResource NavBtn}"       Click="Nav_Click" Tag="Season"/>
+            </StackPanel>
+
+            <!-- Avatar -->
+            <StackPanel Grid.Column="2" Orientation="Horizontal"
+                        VerticalAlignment="Center" Margin="0,0,20,0">
+                <TextBlock Text="Rodrigo" VerticalAlignment="Center"
+                           FontSize="12" Foreground="#888898" Margin="0,0,10,0"/>
+                <Border Width="34" Height="34" CornerRadius="17" Background="#E8002D">
+                    <TextBlock Text="RG" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontFamily="Segoe UI Black" FontSize="12" Foreground="White"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- Red stripe gradient -->
+        <Rectangle Grid.Row="1">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#E8002D" Offset="0"/>
+                    <GradientStop Color="#FF6B35" Offset="0.5"/>
+                    <GradientStop Color="#E8002D" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Content area -->
+        <ContentControl x:Name="MainContent" Grid.Row="2"/>
+    </Grid>
+</Window>
