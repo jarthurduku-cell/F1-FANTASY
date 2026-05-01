@@ -1,0 +1,230 @@
+<UserControl x:Class="F1Fantasy.Views.AssignPilotsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#0A0A0A">
+    <UserControl.Resources>
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="#111113"/>
+            <Setter Property="BorderBrush" Value="#222226"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+        <Style x:Key="Lbl" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#888898"/>
+        </Style>
+        <Style x:Key="BtnRed" TargetType="Button">
+            <Setter Property="Background" Value="#E8002D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1E47"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Randomize button — colour per driver team -->
+        <Style x:Key="BtnRandomize" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel>
+
+            <!-- ── TITLE ── -->
+            <StackPanel HorizontalAlignment="Center" Margin="0,36,0,24">
+                <TextBlock Text="Assign Random Drivers"
+                           FontFamily="Segoe UI Black" FontSize="28" FontWeight="Black"
+                           Foreground="#F0EEEA" HorizontalAlignment="Center"/>
+                <TextBlock Text="Assign random drivers to league members"
+                           Style="{StaticResource Lbl}"
+                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+            </StackPanel>
+
+            <!-- ── ASSIGN NOW button (top) ── -->
+            <Button x:Name="BtnAssignNow"
+                    Content="🎲  Assign Now"
+                    Style="{StaticResource BtnRed}"
+                    Padding="40,14" FontSize="15"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,28"
+                    Click="BtnAssignNow_Click"/>
+
+            <!-- ── TABLE ── -->
+            <Border Style="{StaticResource Card}" Margin="40,0,40,0" Padding="0">
+                <StackPanel>
+
+                    <!-- Column headers -->
+                    <Border Background="#161618" CornerRadius="6,6,0,0" Padding="24,12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220"/>  <!-- User -->
+                                <ColumnDefinition Width="*"/>    <!-- Assigned Driver -->
+                                <ColumnDefinition Width="240"/>  <!-- Team -->
+                                <ColumnDefinition Width="150"/>  <!-- Randomize -->
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="User"
+                                       Style="{StaticResource Lbl}" FontFamily="Segoe UI Semibold"/>
+                            <TextBlock Grid.Column="1" Text="Assigned Driver"
+                                       Style="{StaticResource Lbl}" FontFamily="Segoe UI Semibold"/>
+                            <TextBlock Grid.Column="2" Text="Team"
+                                       Style="{StaticResource Lbl}" FontFamily="Segoe UI Semibold"/>
+                        </Grid>
+                    </Border>
+
+                    <Rectangle Height="1" Fill="#1E1E22"/>
+
+                    <!-- Rows -->
+                    <ItemsControl x:Name="AssignmentList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#1E1E22" BorderThickness="0,0,0,1"
+                                        Background="#111113" Padding="24,0">
+                                    <Grid MinHeight="72">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="220"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="240"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- User avatar + name -->
+                                        <StackPanel Grid.Column="0" Orientation="Horizontal"
+                                                    VerticalAlignment="Center">
+                                            <Border Width="40" Height="40" CornerRadius="20"
+                                                    Background="{Binding AvatarColor}"
+                                                    Margin="0,0,12,0">
+                                                <TextBlock Text="{Binding Initials}"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontFamily="Segoe UI Black"
+                                                           FontSize="13" Foreground="White"/>
+                                            </Border>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding UserName}"
+                                                           FontFamily="Segoe UI Semibold"
+                                                           FontSize="13" Foreground="#F0EEEA"/>
+                                                <TextBlock Text="{Binding LeagueName}"
+                                                           Style="{StaticResource Lbl}"
+                                                           Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <!-- Assigned driver card -->
+                                        <Border Grid.Column="1"
+                                                Background="#1A1A1C"
+                                                BorderBrush="#2A2A2E" BorderThickness="1"
+                                                CornerRadius="6" Margin="0,12,16,12"
+                                                Padding="12,0">
+                                            <StackPanel Orientation="Horizontal"
+                                                        VerticalAlignment="Center">
+                                                <!-- Number badge -->
+                                                <Border Width="40" Height="40" CornerRadius="4"
+                                                        Background="{Binding DriverTeamColor}"
+                                                        Margin="0,0,12,0">
+                                                    <TextBlock Text="{Binding DriverNumber}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               FontFamily="Segoe UI Black"
+                                                               FontSize="16" FontWeight="Black"
+                                                               Foreground="White"/>
+                                                </Border>
+                                                <!-- Name + tag -->
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding DriverName}"
+                                                               FontFamily="Segoe UI Semibold"
+                                                               FontSize="14" Foreground="#F0EEEA"/>
+                                                    <!-- Optional ranking tag -->
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Margin="0,3,0,0"
+                                                                Visibility="{Binding TagVis}">
+                                                        <TextBlock Text="↳ " FontSize="10"
+                                                                   Foreground="#888898"/>
+                                                        <Border Background="{Binding TagColor}"
+                                                                CornerRadius="3" Padding="6,2">
+                                                            <TextBlock Text="{Binding Tag}"
+                                                                       FontFamily="Segoe UI Semibold"
+                                                                       FontSize="10" Foreground="White"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- Team -->
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                                    VerticalAlignment="Center" Margin="0,0,16,0">
+                                            <!-- Team colour strip -->
+                                            <Border Width="6" Height="36" CornerRadius="3"
+                                                    Background="{Binding DriverTeamColor}"
+                                                    Margin="0,0,12,0"/>
+                                            <TextBlock Text="{Binding TeamName}"
+                                                       FontFamily="Segoe UI Semibold"
+                                                       FontSize="13" Foreground="#F0EEEA"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <!-- Randomize button -->
+                                        <Button Grid.Column="3"
+                                                Content="🎲  Randomize"
+                                                Background="{Binding RandomizeBtnColor}"
+                                                Style="{StaticResource BtnRandomize}"
+                                                Padding="14,10"
+                                                VerticalAlignment="Center"
+                                                Click="BtnRandomizeSingle_Click"
+                                                Tag="{Binding UserName}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ── CONFIRM ASSIGNMENT button (bottom) ── -->
+            <Button x:Name="BtnConfirm"
+                    Content="Confirm Assignment"
+                    Style="{StaticResource BtnRed}"
+                    Padding="60,14" FontSize="15"
+                    HorizontalAlignment="Center"
+                    Margin="0,24,0,36"
+                    Click="BtnConfirm_Click"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

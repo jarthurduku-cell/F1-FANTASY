@@ -1,0 +1,443 @@
+<UserControl x:Class="F1Fantasy.Views.MySquadView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#0A0A0A">
+    <UserControl.Resources>
+
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="#111113"/>
+            <Setter Property="BorderBrush" Value="#222226"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+
+        <Style x:Key="Lbl" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#888898"/>
+        </Style>
+
+        <!-- Red button -->
+        <Style x:Key="BtnRed" TargetType="Button">
+            <Setter Property="Background" Value="#E8002D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1E47"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Dark button (Set as Main Driver) -->
+        <Style x:Key="BtnDark" TargetType="Button">
+            <Setter Property="Background" Value="#1E1E22"/>
+            <Setter Property="Foreground" Value="#888898"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2A2A2E"/>
+                                <Setter Property="Foreground" Value="#F0EEEA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Input box -->
+        <Style x:Key="InputBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#111113"/>
+            <Setter Property="Foreground" Value="#888898"/>
+            <Setter Property="BorderBrush" Value="#2A2A2E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CaretBrush" Value="#F0EEEA"/>
+        </Style>
+
+        <!-- ComboBox -->
+        <Style x:Key="Combo" TargetType="ComboBox">
+            <Setter Property="Background" Value="#111113"/>
+            <Setter Property="Foreground" Value="#F0EEEA"/>
+            <Setter Property="BorderBrush" Value="#2A2A2E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Height" Value="34"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Margin="18,14,18,14">
+        <Grid.ColumnDefinitions>
+            <!-- Left: budget bar + search + driver list -->
+            <ColumnDefinition Width="*"/>
+            <!-- Gap -->
+            <ColumnDefinition Width="16"/>
+            <!-- Right: Your Squad panel -->
+            <ColumnDefinition Width="310"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ══════════════════════════════════════════
+             LEFT COLUMN
+             ══════════════════════════════════════════ -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>  <!-- budget bar -->
+                <RowDefinition Height="12"/>
+                <RowDefinition Height="Auto"/>  <!-- search row -->
+                <RowDefinition Height="12"/>
+                <RowDefinition Height="*"/>     <!-- driver list -->
+            </Grid.RowDefinitions>
+
+            <!-- BUDGET BAR -->
+            <Border Grid.Row="0" Style="{StaticResource Card}" Padding="18,14">
+                <StackPanel>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Budget" Style="{StaticResource Lbl}"/>
+                            <TextBlock Text="$100.0M"
+                                       FontFamily="Segoe UI Black" FontSize="18"
+                                       Foreground="#F0EEEA" Margin="0,3,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Spent" Style="{StaticResource Lbl}"/>
+                            <TextBlock Text="$91.5M"
+                                       FontFamily="Segoe UI Black" FontSize="18"
+                                       Foreground="#F0EEEA" Margin="0,3,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Remaining" Style="{StaticResource Lbl}"/>
+                            <TextBlock Text="$8.5M"
+                                       FontFamily="Segoe UI Black" FontSize="18"
+                                       Foreground="#4CAF50" Margin="0,3,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="3" Background="#1A1A1C" BorderBrush="#333336"
+                                BorderThickness="1" CornerRadius="4" Padding="10,5"
+                                VerticalAlignment="Bottom">
+                            <TextBlock Text="4/5 Selected"
+                                       FontFamily="Segoe UI Semibold" FontSize="11"
+                                       Foreground="#F0EEEA"/>
+                        </Border>
+                    </Grid>
+                    <!-- Progress bar -->
+                    <Grid Height="7" Background="#1A1A1C">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="915*"/>
+                            <ColumnDefinition Width="85*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" CornerRadius="3">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#E8002D" Offset="0"/>
+                                    <GradientStop Color="#FF6B35" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- SEARCH + FILTERS -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource Card}" Padding="10,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="🔍" FontSize="13" Foreground="#555560"
+                                   VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Style="{StaticResource InputBox}"
+                                 Background="Transparent" BorderThickness="0"
+                                 Text="" Width="300"
+                                 VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <ComboBox Grid.Column="2" Style="{StaticResource Combo}"
+                          SelectedIndex="0">
+                    <ComboBoxItem>All Teams</ComboBoxItem>
+                    <ComboBoxItem>Red Bull Racing</ComboBoxItem>
+                    <ComboBoxItem>Ferrari</ComboBoxItem>
+                    <ComboBoxItem>McLaren</ComboBoxItem>
+                    <ComboBoxItem>Mercedes</ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox Grid.Column="4" Style="{StaticResource Combo}"
+                          SelectedIndex="0">
+                    <ComboBoxItem>Sort by Points</ComboBoxItem>
+                    <ComboBoxItem>Sort by Price</ComboBoxItem>
+                    <ComboBoxItem>Sort by Name</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+
+            <!-- AVAILABLE DRIVERS LIST -->
+            <Border Grid.Row="4" Style="{StaticResource Card}" Padding="0">
+                <StackPanel>
+                    <TextBlock Text="Available Drivers"
+                               FontFamily="Segoe UI Semibold" FontSize="13"
+                               Foreground="#F0EEEA" Margin="16,14,16,12"/>
+                    <Rectangle Height="1" Fill="#1A1A1E"/>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="560">
+                        <ItemsControl x:Name="AvailableList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="DriverRow"
+                                            Background="{Binding RowBg}"
+                                            BorderBrush="{Binding RowBorder}"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="16,0" Cursor="Hand">
+                                        <Grid MinHeight="62">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="56"/>   <!-- badge -->
+                                                <ColumnDefinition Width="*"/>    <!-- name -->
+                                                <ColumnDefinition Width="Auto"/> <!-- form chips -->
+                                                <ColumnDefinition Width="70"/>   <!-- points -->
+                                                <ColumnDefinition Width="80"/>   <!-- price -->
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Number badge -->
+                                            <Border Grid.Column="0" Width="44" Height="44"
+                                                    CornerRadius="4"
+                                                    Background="{Binding TeamColor}"
+                                                    VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Number}"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontFamily="Segoe UI Black"
+                                                           FontSize="16" FontWeight="Black"
+                                                           Foreground="White"/>
+                                            </Border>
+
+                                            <!-- Name + team -->
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center"
+                                                        Margin="12,0,16,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontFamily="Segoe UI Semibold"
+                                                               FontSize="13" Foreground="#F0EEEA"/>
+                                                    <TextBlock Text=" ✓" FontSize="11"
+                                                               Foreground="#E8002D"
+                                                               Visibility="{Binding InSquadVis}"
+                                                               VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                                <TextBlock Text="{Binding Team}"
+                                                           FontSize="11" Foreground="#888898"
+                                                           Margin="0,2,0,0"/>
+                                            </StackPanel>
+
+                                            <!-- Form chips -->
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                                        VerticalAlignment="Center" Margin="0,0,16,0">
+                                                <TextBlock Text="Form" Style="{StaticResource Lbl}"
+                                                           VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                                <ItemsControl ItemsSource="{Binding Form}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border CornerRadius="3" Margin="2,0"
+                                                                    Background="{Binding Bg}" Padding="5,3">
+                                                                <TextBlock Text="{Binding Val}"
+                                                                           FontFamily="Segoe UI Semibold"
+                                                                           FontSize="10" Foreground="White"/>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+
+                                            <!-- Points -->
+                                            <StackPanel Grid.Column="3" VerticalAlignment="Center"
+                                                        HorizontalAlignment="Right" Margin="0,0,12,0">
+                                                <TextBlock Text="Points" Style="{StaticResource Lbl}"
+                                                           HorizontalAlignment="Right"/>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                    <TextBlock Text="{Binding Points}"
+                                                               FontFamily="Segoe UI Black" FontSize="15"
+                                                               Foreground="#F0EEEA"/>
+                                                    <TextBlock Text="{Binding Trend}" FontSize="12"
+                                                               Foreground="{Binding TrendColor}"
+                                                               VerticalAlignment="Center" Margin="3,0,0,0"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <!-- Price -->
+                                            <StackPanel Grid.Column="4" VerticalAlignment="Center"
+                                                        HorizontalAlignment="Right">
+                                                <TextBlock Text="Price" Style="{StaticResource Lbl}"
+                                                           HorizontalAlignment="Right"/>
+                                                <TextBlock Text="{Binding Price}"
+                                                           FontFamily="Segoe UI Black" FontSize="15"
+                                                           Foreground="#F0EEEA"
+                                                           HorizontalAlignment="Right" Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- ══════════════════════════════════════════
+             RIGHT COLUMN — YOUR SQUAD
+             ══════════════════════════════════════════ -->
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Squad panel -->
+            <Border Grid.Row="0" Style="{StaticResource Card}" Padding="0">
+                <StackPanel>
+                    <!-- Header -->
+                    <Border Background="#1A0004" CornerRadius="4,4,0,0" Padding="16,14">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="⚡ " FontSize="14" Foreground="#E8002D"/>
+                                <TextBlock Text="Your Squad"
+                                           FontFamily="Segoe UI Black" FontSize="15"
+                                           FontWeight="Black" Foreground="#F0EEEA"/>
+                            </StackPanel>
+                            <TextBlock Text="Select 5 drivers and choose your main driver"
+                                       Style="{StaticResource Lbl}" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="560">
+                        <ItemsControl x:Name="SquadList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#1E1E22" BorderThickness="0,0,0,1"
+                                            Padding="14,12">
+                                        <StackPanel>
+                                            <!-- Driver row -->
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Badge -->
+                                                <Border Grid.Column="0" Width="38" Height="38"
+                                                        CornerRadius="4"
+                                                        Background="{Binding TeamColor}"
+                                                        Margin="0,0,10,0">
+                                                    <TextBlock Text="{Binding Number}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               FontFamily="Segoe UI Black"
+                                                               FontSize="14" Foreground="White"/>
+                                                </Border>
+
+                                                <!-- Name + team -->
+                                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontFamily="Segoe UI Semibold"
+                                                               FontSize="12" Foreground="#F0EEEA"/>
+                                                    <TextBlock Text="{Binding Team}"
+                                                               FontSize="10" Foreground="#888898"
+                                                               Margin="0,2,0,0"/>
+                                                </StackPanel>
+
+                                                <!-- Remove X -->
+                                                <TextBlock Grid.Column="2" Text="✕"
+                                                           FontSize="13" Foreground="#444448"
+                                                           VerticalAlignment="Center"
+                                                           Cursor="Hand"/>
+                                            </Grid>
+
+                                            <!-- Price + Points row -->
+                                            <Grid Margin="0,8,0,6">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                    <TextBlock Text="Price: " Style="{StaticResource Lbl}"/>
+                                                    <TextBlock Text="{Binding Price}"
+                                                               FontFamily="Segoe UI Semibold"
+                                                               FontSize="11" Foreground="#F0EEEA"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                                            HorizontalAlignment="Right">
+                                                    <TextBlock Text="Points: " Style="{StaticResource Lbl}"/>
+                                                    <TextBlock Text="{Binding Points}"
+                                                               FontFamily="Segoe UI Semibold"
+                                                               FontSize="11" Foreground="#F0EEEA"/>
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <!-- Set as Main button -->
+                                            <Button Content="☆  Set as Main Driver"
+                                                    Style="{StaticResource BtnDark}"
+                                                    Padding="0,8" HorizontalAlignment="Stretch"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+
+            <!-- SAVE SQUAD button -->
+            <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                <Button Content="Save Squad" Style="{StaticResource BtnRed}"
+                        Padding="0,14" HorizontalAlignment="Stretch"
+                        FontSize="14"/>
+                <TextBlock Text="Select 1 more driver"
+                           Style="{StaticResource Lbl}"
+                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

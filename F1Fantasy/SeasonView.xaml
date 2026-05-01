@@ -1,0 +1,496 @@
+<UserControl x:Class="F1Fantasy.Views.SeasonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#0A0A0A">
+    <UserControl.Resources>
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="#111113"/>
+            <Setter Property="BorderBrush" Value="#222226"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style x:Key="Lbl" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#888898"/>
+        </Style>
+        <!-- Red active tab button -->
+        <Style x:Key="TabActive" TargetType="Button">
+            <Setter Property="Background" Value="#E8002D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Inactive tab button -->
+        <Style x:Key="TabInactive" TargetType="Button">
+            <Setter Property="Background" Value="#111113"/>
+            <Setter Property="Foreground" Value="#888898"/>
+            <Setter Property="BorderBrush" Value="#222226"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#F0EEEA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Submit red button -->
+        <Style x:Key="BtnRed" TargetType="Button">
+            <Setter Property="Background" Value="#E8002D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1E47"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="18,14,18,14">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="310"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ══ LEFT COLUMN ══ -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>   <!-- top header row -->
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>   <!-- info banner -->
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>   <!-- tab buttons -->
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>      <!-- prediction area -->
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>   <!-- submit -->
+            </Grid.RowDefinitions>
+
+            <!-- TOP: Race info + countdown + last season + best finish -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Season title -->
+                <Border Grid.Column="0" Background="#140002"
+                        BorderBrush="#2A0008" BorderThickness="1" CornerRadius="4" Padding="16,14">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="40" Height="40" CornerRadius="8"
+                                Background="#E8002D" Margin="0,0,14,0" VerticalAlignment="Center">
+                            <TextBlock Text="🏁" FontSize="20"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="2026 F1 Season Predictions"
+                                       FontFamily="Segoe UI Black" FontSize="17"
+                                       FontWeight="Black" Foreground="#F0EEEA"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="📅 " FontSize="11"/>
+                                <TextBlock Text="24 Races  •  March - December 2026"
+                                           Style="{StaticResource Lbl}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Deadline countdown -->
+                <Border Grid.Column="2" Style="{StaticResource Card}" Padding="16,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="⏱ " FontSize="12" Foreground="#E8002D"/>
+                            <TextBlock Text="Deadline"
+                                       FontFamily="Segoe UI Semibold" FontSize="12"
+                                       Foreground="#F0EEEA"/>
+                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                                <TextBlock Text="45" FontFamily="Segoe UI Black" FontSize="20"
+                                           FontWeight="Black" Foreground="#F0EEEA" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Days" Style="{StaticResource Lbl}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                <TextBlock Text="8" FontFamily="Segoe UI Black" FontSize="20"
+                                           FontWeight="Black" Foreground="#F0EEEA" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Hours" Style="{StaticResource Lbl}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                                <TextBlock Text="23" FontFamily="Segoe UI Black" FontSize="20"
+                                           FontWeight="Black" Foreground="#F0EEEA" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Min" Style="{StaticResource Lbl}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                                <TextBlock Text="14" FontFamily="Segoe UI Black" FontSize="20"
+                                           FontWeight="Black" Foreground="#F0EEEA" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Sec" Style="{StaticResource Lbl}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Last Season -->
+                <Border Grid.Column="4" Style="{StaticResource Card}" Padding="16,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                            <TextBlock Text="🏆 " FontSize="12"/>
+                            <TextBlock Text="Last Season" Style="{StaticResource Lbl}"/>
+                        </StackPanel>
+                        <TextBlock Text="6th" FontFamily="Segoe UI Black" FontSize="26"
+                                   FontWeight="Black" Foreground="#F0EEEA"/>
+                        <TextBlock Text="Final position" Style="{StaticResource Lbl}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Best Finish -->
+                <Border Grid.Column="6" Style="{StaticResource Card}" Padding="16,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                            <TextBlock Text="📈 " FontSize="12"/>
+                            <TextBlock Text="Best Finish" Style="{StaticResource Lbl}"/>
+                        </StackPanel>
+                        <TextBlock Text="3rd" FontFamily="Segoe UI Black" FontSize="26"
+                                   FontWeight="Black" Foreground="#F0EEEA"/>
+                        <TextBlock Text="2024 Season" Style="{StaticResource Lbl}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- INFO BANNER -->
+            <Border Grid.Row="2" Background="#0D0005"
+                    BorderBrush="#2A0010" BorderThickness="1" CornerRadius="4" Padding="16,12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                            <TextBlock Text="🎯 " FontSize="12" Foreground="#E8002D"/>
+                            <TextBlock Text="Season Championship Predictions"
+                                       FontFamily="Segoe UI Semibold" FontSize="12"
+                                       Foreground="#F0EEEA"/>
+                        </StackPanel>
+                        <TextBlock Text="Predict the final top 10 for both Drivers' and Constructors' Championships. Drag and drop to rank drivers and teams. Points awarded at season end based on accuracy."
+                                   FontSize="11" Foreground="#888898" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <TextBlock Text="Completion" Style="{StaticResource Lbl}"
+                                   HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="CompletionText" Text="0%"
+                                   FontFamily="Segoe UI Black" FontSize="22"
+                                   FontWeight="Black" Foreground="#F0EEEA"
+                                   HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- TAB BUTTONS -->
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="BtnDrivers" Grid.Column="0"
+                        Content="🏆  Drivers' Championship"
+                        Style="{StaticResource TabActive}"
+                        Padding="0,12" Margin="0,0,2,0"
+                        Click="BtnDrivers_Click"/>
+                <Button x:Name="BtnConstructors" Grid.Column="1"
+                        Content="👥  Constructors' Championship"
+                        Style="{StaticResource TabInactive}"
+                        Padding="0,12" Margin="2,0,0,0"
+                        Click="BtnConstructors_Click"/>
+            </Grid>
+
+            <!-- PREDICTION AREA -->
+            <Border Grid.Row="6" Background="#0A0A0A"
+                    BorderBrush="#222226" BorderThickness="1" CornerRadius="4">
+                <Grid>
+                    <!-- Header inside prediction area -->
+                    <StackPanel>
+                        <Grid Margin="16,14,16,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🏆 " FontSize="13" Foreground="#E8002D"/>
+                                <TextBlock x:Name="PredTitle"
+                                           Text="Top 10 Drivers Prediction"
+                                           FontFamily="Segoe UI Semibold" FontSize="13"
+                                           Foreground="#F0EEEA" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Border Grid.Column="1" Background="#1A1A1C"
+                                    BorderBrush="#333336" BorderThickness="1"
+                                    CornerRadius="4" Padding="10,5">
+                                <TextBlock x:Name="CounterText" Text="0/10 Drivers"
+                                           FontFamily="Segoe UI Semibold" FontSize="11"
+                                           Foreground="#F0EEEA"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock x:Name="PredSubtitle"
+                                   Text="Drag to reorder your championship predictions"
+                                   Style="{StaticResource Lbl}" Margin="16,0,0,10"/>
+                        <Rectangle Height="1" Fill="#1A1A1E"/>
+
+                        <!-- Drivers list (visible when drivers tab active) -->
+                        <ScrollViewer x:Name="DriversScroll"
+                                      VerticalScrollBarVisibility="Auto" MaxHeight="340"
+                                      Visibility="Visible">
+                            <ItemsControl x:Name="DriverPredList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="#1A1A1E" BorderThickness="0,0,0,1"
+                                                Padding="14,0" Background="#111113" Cursor="SizeAll">
+                                            <Grid MinHeight="54">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="22"/>
+                                                    <ColumnDefinition Width="32"/>
+                                                    <ColumnDefinition Width="46"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="⠿"
+                                                           FontSize="15" Foreground="#333336"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding Rank}"
+                                                           FontFamily="Segoe UI Black" FontSize="15"
+                                                           Foreground="{Binding RankColor}"
+                                                           VerticalAlignment="Center"/>
+                                                <Border Grid.Column="2" Width="36" Height="36"
+                                                        CornerRadius="4"
+                                                        Background="{Binding TeamColor}"
+                                                        VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock Text="{Binding Number}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               FontFamily="Segoe UI Black"
+                                                               FontSize="13" Foreground="White"/>
+                                                </Border>
+                                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontFamily="Segoe UI Semibold"
+                                                               FontSize="13" Foreground="#F0EEEA"/>
+                                                    <TextBlock Text="{Binding Team}"
+                                                               FontSize="10" Foreground="#888898"
+                                                               Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="4" Text="✕"
+                                                           FontSize="13" Foreground="#444448"
+                                                           VerticalAlignment="Center"
+                                                           Cursor="Hand" Margin="0,0,4,0"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <!-- Constructors list (visible when constructors tab active) -->
+                        <ScrollViewer x:Name="ConstructorsScroll"
+                                      VerticalScrollBarVisibility="Auto" MaxHeight="340"
+                                      Visibility="Collapsed">
+                            <ItemsControl x:Name="ConstructorPredList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="#1A1A1E" BorderThickness="0,0,0,1"
+                                                Padding="14,0" Background="#111113" Cursor="SizeAll">
+                                            <Grid MinHeight="54">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="22"/>
+                                                    <ColumnDefinition Width="32"/>
+                                                    <ColumnDefinition Width="16"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="⠿"
+                                                           FontSize="15" Foreground="#333336"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding Rank}"
+                                                           FontFamily="Segoe UI Black" FontSize="15"
+                                                           Foreground="{Binding RankColor}"
+                                                           VerticalAlignment="Center"/>
+                                                <Border Grid.Column="2" Width="8" Height="36"
+                                                        CornerRadius="2"
+                                                        Background="{Binding TeamColor}"
+                                                        VerticalAlignment="Center" Margin="0,0,14,0"/>
+                                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontFamily="Segoe UI Semibold"
+                                                               FontSize="13" Foreground="#F0EEEA"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="4" Text="✕"
+                                                           FontSize="13" Foreground="#444448"
+                                                           VerticalAlignment="Center"
+                                                           Cursor="Hand" Margin="0,0,4,0"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <!-- Empty state (shown when no predictions) -->
+                        <Border x:Name="EmptyState" Padding="0,50" Visibility="Visible">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="›" FontSize="32" Foreground="#333336"
+                                           HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                <TextBlock x:Name="EmptyText" Text="No predictions yet"
+                                           FontFamily="Segoe UI Semibold" FontSize="14"
+                                           Foreground="#555560" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Select drivers from the right to begin"
+                                           Style="{StaticResource Lbl}"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- SUBMIT -->
+            <StackPanel Grid.Row="8">
+                <Button Content="Submit Season Predictions"
+                        Style="{StaticResource BtnRed}"
+                        Padding="0,14" HorizontalAlignment="Stretch"/>
+                <TextBlock x:Name="SubmitHint"
+                           Text="Complete both championships to submit (10 drivers, 10 constructors remaining)"
+                           Style="{StaticResource Lbl}"
+                           HorizontalAlignment="Center" Margin="0,7,0,0"
+                           TextWrapping="Wrap" TextAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- ══ RIGHT COLUMN ══ -->
+        <Border Grid.Column="2" Style="{StaticResource Card}" Padding="0">
+            <StackPanel>
+                <StackPanel Margin="14,14,14,10">
+                    <TextBlock Text="Available Drivers"
+                               FontFamily="Segoe UI Semibold" FontSize="13"
+                               Foreground="#F0EEEA"/>
+                    <TextBlock Text="Click to add to your predictions"
+                               Style="{StaticResource Lbl}" Margin="0,3,0,0"/>
+                </StackPanel>
+                <Rectangle Height="1" Fill="#1A1A1E"/>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="680">
+                    <ItemsControl x:Name="AvailableList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#1A1A1E" BorderThickness="0,0,0,1"
+                                        Padding="12,10" Cursor="Hand">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#1A1A1C"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="38"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Grid.Column="0" Width="34" Height="34"
+                                                CornerRadius="4"
+                                                Background="{Binding TeamColor}">
+                                            <TextBlock Text="{Binding Number}"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontFamily="Segoe UI Black"
+                                                       FontSize="12" Foreground="White"/>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center"
+                                                    Margin="10,0,8,0">
+                                            <TextBlock Text="{Binding Name}"
+                                                       FontFamily="Segoe UI Semibold"
+                                                       FontSize="12" Foreground="#F0EEEA"/>
+                                            <TextBlock Text="{Binding Team}"
+                                                       FontSize="10" Foreground="#888898"
+                                                       Margin="0,1,0,0"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center"
+                                                    HorizontalAlignment="Right" Margin="0,0,8,0">
+                                            <TextBlock Text="Current" Style="{StaticResource Lbl}"
+                                                       HorizontalAlignment="Right"/>
+                                            <TextBlock Text="{Binding CurrentPos}"
+                                                       FontFamily="Segoe UI Semibold" FontSize="11"
+                                                       Foreground="#F0EEEA"
+                                                       HorizontalAlignment="Right"/>
+                                        </StackPanel>
+
+                                        <TextBlock Grid.Column="3" Text="›"
+                                                   FontSize="16" Foreground="#444448"
+                                                   VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
