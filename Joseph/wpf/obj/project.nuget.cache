@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "aTMc0hIZn2A=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\WPF.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jarth\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\jarth\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\jarth\\.nuget\\packages\\mysqlconnector\\2.5.0\\mysqlconnector.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
