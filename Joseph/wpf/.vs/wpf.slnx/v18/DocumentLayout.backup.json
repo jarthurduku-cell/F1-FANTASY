@@ -1,0 +1,147 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|c:\\users\\jarth\\desktop\\tm\\y1s2\\inspirationlab\\project\\joseph\\wpf\\f1_fantasy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|solutionrelative:f1_fantasy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|c:\\users\\jarth\\desktop\\tm\\y1s2\\inspirationlab\\project\\joseph\\wpf\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|solutionrelative:data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|c:\\users\\jarth\\desktop\\tm\\y1s2\\inspirationlab\\project\\joseph\\wpf\\register.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|solutionrelative:register.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|c:\\users\\jarth\\desktop\\tm\\y1s2\\inspirationlab\\project\\joseph\\wpf\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|solutionrelative:login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|c:\\users\\jarth\\desktop\\tm\\y1s2\\inspirationlab\\project\\joseph\\wpf\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|solutionrelative:login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|c:\\users\\jarth\\desktop\\tm\\y1s2\\inspirationlab\\project\\joseph\\wpf\\register.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|solutionrelative:register.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|c:\\users\\jarth\\desktop\\tm\\y1s2\\inspirationlab\\project\\joseph\\wpf\\to-do.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A38B0658-605A-F471-8E9B-937F5242C01F}|WPF.csproj|solutionrelative:to-do.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "login.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\login.xaml.cs",
+              "RelativeDocumentMoniker": "login.xaml.cs",
+              "ToolTip": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\login.xaml.cs",
+              "RelativeToolTip": "login.xaml.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwBkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T23:28:04.958Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "login.xaml",
+              "DocumentMoniker": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\login.xaml",
+              "RelativeDocumentMoniker": "login.xaml",
+              "ToolTip": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\login.xaml",
+              "RelativeToolTip": "login.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-22T23:27:56.104Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "register.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\register.xaml.cs",
+              "RelativeDocumentMoniker": "register.xaml.cs",
+              "ToolTip": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\register.xaml.cs",
+              "RelativeToolTip": "register.xaml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAIA2wB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-30T01:02:28.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "register.xaml",
+              "DocumentMoniker": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\register.xaml",
+              "RelativeDocumentMoniker": "register.xaml",
+              "ToolTip": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\register.xaml",
+              "RelativeToolTip": "register.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-30T00:41:49.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Data.cs",
+              "DocumentMoniker": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\Data.cs",
+              "RelativeDocumentMoniker": "Data.cs",
+              "ToolTip": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\Data.cs",
+              "RelativeToolTip": "Data.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T21:43:31.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "F1_Fantasy.cs",
+              "DocumentMoniker": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\F1_Fantasy.cs",
+              "RelativeDocumentMoniker": "F1_Fantasy.cs",
+              "ToolTip": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\F1_Fantasy.cs",
+              "RelativeToolTip": "F1_Fantasy.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAA0wBUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T21:41:44.03Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "To-Do.txt",
+              "DocumentMoniker": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\To-Do.txt",
+              "RelativeDocumentMoniker": "To-Do.txt",
+              "ToolTip": "C:\\Users\\jarth\\Desktop\\TM\\Y1S2\\InspirationLab\\Project\\Joseph\\wpf\\To-Do.txt",
+              "RelativeToolTip": "To-Do.txt",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-04-27T21:16:12.239Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

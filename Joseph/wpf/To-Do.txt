@@ -1,0 +1,15 @@
+🔴 *JOSEPH*
+* Login screen (WPF)♣
+* Register screen (WPF)
+* Forgot password flow
+* Profile picture upload
+* Admin Panel (CRUD users + exports)
+* Make sure all his screens correctly send and retrieve data from his local database
+
+
+
+
+
+
+
+
